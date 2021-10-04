@@ -7,30 +7,41 @@
 
 <div id="content">
     Vítejte v aplikaci Zadej.To Kvalitně, kde se můžete zůčastnit různých vědomostních testů a porovnávat svoje výsledky.
-    Můžete se nechat vyzkoušet například:
+    Můžete se nechat vyzkoušet.
+    {form form}
+        <label>{$form['name']->label}{$form['name']->control}</label>
     <table>
         <thead>
            
             <tr>
-                <th>Složitost \ Předmět </th>
-                <th>Matematika</th>
-                
+                <th><div class="right">Předmět</div>\<div>Třída</div></th>
+                {foreach $tests[0] as $subject}
+                    <th>{$subject}</th>
+                {/foreach}
             </tr>
         </thead>
         <tbody>
+            {foreach $tests as $class => $parts}
+                {continueIf $class===0}
             <tr>
                 <th>
-                    1. Třída
+                    {$class}
                 </th>
                 <td>
-                    <a class="really-start" href="{plink Test:default}">Sčítání od jedné do deseti</a>
+                    {foreach $parts as $action => $part}
+                        <label><small>{$part}</small>{$form[Test]->getControlPart($action)} </label>
+                    {/foreach}
                 </td>
             </tr>
+            {/foreach}
         </tbody>
     </table>
+        {$form['sent']->control}
+    {/form}
 </div>
 
 <style>
+    .right { text-align: right; }
 	html { font: normal 18px/1.3 Georgia, "New York CE", utopia, serif; color: #666; -webkit-text-stroke: 1px rgba(0,0,0,0); overflow-y: scroll; }
 	body { background: #3484d2; color: #333; margin: 2em auto; padding: 0 .5em; max-width: 600px; min-width: 320px; }
 

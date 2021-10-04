@@ -16,14 +16,15 @@ class TestPresenter extends Nette\Application\UI\Presenter
     }
 
 
-    public function renderDefault()
+    public function renderDefault(array $formData)
     {
         $session = $this->getSession('TaskList');
-        if($session->TaskList === null) {
+        if(empty($session->TaskList) || count($session->TaskList)==0 ) {
             $session->TaskList = new \App\Tasks\TaskList();
             for($i=0; $i<5; $i++) {
                 $session->TaskList[] = new \App\Tasks\MathTask(); 
             }
+            $session->name = $formData[name];
         }
     }
 
@@ -84,20 +85,19 @@ class TestPresenter extends Nette\Application\UI\Presenter
     private function timeDiffSec(\DateTime $a, \DateTime $b): int
     {
         $interval = $a->diff($b);
-        $days = $interval->format('%r%a');
         $seconds = 0;
-        if($days){
-            $seconds += 24 * 60 * 60 * $days;
-        }
+        
+        $days = $interval->format('%r%a');
+        $seconds += 24 * 60 * 60 * $days;
+        
         $hours = $interval->format('%H');
-        if($hours){
-            $seconds += 60 * 60 * $hours;
-        }
+        $seconds += 60 * 60 * $hours;
+        
         $minutes = $interval->format('%i');
-        if($minutes){
-            $seconds += 60 * $minutes;
-        }
+        $seconds += 60 * $minutes;
+
         $seconds += $interval->format('%s');
+        
         return $seconds;
     }
 

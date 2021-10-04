@@ -15,6 +15,7 @@ class MathTask implements ITask {
     private ?float $solved = null;
     
     private int $a, $b;
+    protected $operator; 
     
     private \Nette\Utils\DateTime $startedOn; 
     
@@ -22,13 +23,21 @@ class MathTask implements ITask {
 
     public function __construct() {
         $this->a = random_int(0,10);     
-        $this->b = random_int(0,10); 
+        $this->b = random_int(0,10);
+        $this->operator = $this->createOperator();
         $this->startedOn = new \Nette\Utils\DateTime();
+    }
+    
+    protected function createOperator(int $difucity = 2):string
+    {
+        $operators = '+-*/^';
+        $index = random_int(0, $difucity);
+        return $operators[$index];
     }
 
     public function getTask() : string 
     {
-        return $this->a . ' + '. $this->b;
+        return $this->a . ' '.$this->operator.' '. $this->b;
     }
     
     public function getTaskType() : string 
@@ -38,7 +47,7 @@ class MathTask implements ITask {
     
     public function getRegexp() : string
     {
-        return "(\+|\-){0,1}[0-9| ]+(\.[0-9| ]+){0,1}";
+        return "(\+|\-){0,1}[0-9| ]+((\.|,)[0-9| ]+){0,1}";
     }
     
     public function rank($givenResult) : float 
@@ -67,7 +76,8 @@ class MathTask implements ITask {
     
     public function getResult() : float
     {
-        return $this->a + $this->b;
+        $stringCalc = new \ChrisKonnertz\StringCalc\StringCalc();
+        return $stringCalc->calculate($this->getTask());
     }
     
     public function getStartedOn() : \Nette\Utils\DateTime

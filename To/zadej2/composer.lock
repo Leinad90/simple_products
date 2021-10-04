@@ -4,8 +4,57 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "81ea4c616b0896f9d2c269377ef44e60",
+    "content-hash": "1e79f2b686006e982d89b8895d8fe64a",
     "packages": [
+        {
+            "name": "chriskonnertz/string-calc",
+            "version": "v1.0.12",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/chriskonnertz/string-calc.git",
+                "reference": "bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/chriskonnertz/string-calc/zipball/bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0",
+                "reference": "bddc5aaea1c1c0a270e6c96f3719c48afa6cb7f0",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.6.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "ChrisKonnertz\\StringCalc": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Chris Konnertz"
+                }
+            ],
+            "description": "StringCalc is a PHP calculator library for mathematical terms (expressions) passed as strings.",
+            "keywords": [
+                "calculation",
+                "expression",
+                "math",
+                "parser",
+                "string calc",
+                "string-calc",
+                "stringcalc",
+                "term"
+            ],
+            "support": {
+                "issues": "https://github.com/chriskonnertz/string-calc/issues",
+                "source": "https://github.com/chriskonnertz/string-calc/tree/v1.0.12"
+            },
+            "time": "2019-09-03T14:09:20+00:00"
+        },
         {
             "name": "latte/latte",
             "version": "v2.10.3",
@@ -1538,5 +1587,5 @@
         "php": ">= 7.2"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.1.0"
+    "plugin-api-version": "2.0.0"
 }
