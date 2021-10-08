@@ -9,29 +9,33 @@ use Nette\Application\UI\Form;
 
 class TestPresenter extends Nette\Application\UI\Presenter
 {
-        
+    
+    const SESSION_NAME = 'TaskList';
+
+
     public function __construct()
     {
         parent::__construct();
     }
 
 
-    public function renderDefault(array $formData)
+    public function renderDefault(array|\ArrayAccess $formData)
     {
-        $session = $this->getSession('TaskList');
-        if(empty($session->TaskList) || count($session->TaskList)==0 ) {
+        bdump($formData);
+        $session = $this->getSession(self::SESSION_NAME);
+        if(empty($session->TaskList) || count($session->TaskList)==0 || true ) {
             $session->TaskList = new \App\Tasks\TaskList();
             for($i=0; $i<5; $i++) {
-                $session->TaskList[] = new \App\Tasks\MathTask(); 
+                $session->TaskList[] = new \App\Tasks\MathTask(0,10); 
             }
-            $session->name = $formData[name];
+            $session->name = $formData['name'];
         }
     }
 
 
-	protected function createComponentForm(): Form
+    protected function createComponentForm(): Form
 	{
-        $session = $this->getSession('TaskList');
+        $session = $this->getSession(self::SESSION_NAME);
         $form = new Form();
         $form->addProtection();
         $allowSend = $showResult = false;
@@ -71,14 +75,13 @@ class TestPresenter extends Nette\Application\UI\Presenter
     
    public function formSucceeded(Form $form, \Nette\Utils\ArrayHash $formData): void
 	{
-        $session = $this->getSession('TaskList');
+        $session = $this->getSession(self::SESSION_NAME);
         $session->rank = $session->TaskList->rank($formData);
         $this->redirect('rank',$formData);
 	}
     
     public function renderRank(\ArrayAccess|array $formData)
     {
-        $session = $this->getSession('TaskList');
         $this['form']->setDefaults($formData);
     }
 

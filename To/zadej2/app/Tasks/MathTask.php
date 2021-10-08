@@ -14,20 +14,38 @@ class MathTask implements ITask {
     
     private ?float $solved = null;
     
-    private int $a, $b;
+    private float $a, $b;
     protected $operator; 
     
     private \Nette\Utils\DateTime $startedOn; 
     
     private ?\Nette\Utils\DateTime $solvedOn = null; 
 
-    public function __construct() {
-        $this->a = random_int(0,10);     
-        $this->b = random_int(0,10);
-        $this->operator = $this->createOperator();
+    public function __construct(float $min=0, float $max=INF, int $difucity=2) {
+        $this->a = $this->randomNumber($min, $max);    
+        $this->b = $this->randomNumber($min, $max);
+        $this->operator = $this->createOperator($difucity);
         $this->startedOn = new \Nette\Utils\DateTime();
     }
     
+    public function randomNumber(float $min, float $max, float $step=2): float
+    {
+        $random = random_int(0, PHP_INT_MAX)/PHP_INT_MAX;
+        $diff = $max - $min;
+        return $this->round($random*$diff + $min, $step);
+    }
+    
+    protected function round(float $value, float $step=1): float
+    {
+        $diff=fmod($value,$step);
+        $return = $value-$diff;
+        if($diff>$step/2) {
+             $return += $step;
+        }
+        return $return;
+    }
+
+
     protected function createOperator(int $difucity = 2):string
     {
         $operators = '+-*/^';
@@ -55,7 +73,7 @@ class MathTask implements ITask {
         $this->solvedOn = new \Nette\Utils\DateTime();
         $correct= $this->getResult();
         $givenResult = (float)$givenResult;
-        if(\Nette\Utils\Floats::areEqual($correct, $givenResult)) {
+        if(\Nette\Utils\Floats::areEqual($correct, $givenResult))  {
             return $this->solved = 1;
         }
         if($this->signum($givenResult) != $this->signum($correct) ) {

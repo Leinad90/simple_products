@@ -12,8 +12,7 @@ namespace App\Tasks;
 class TaskList extends \Nette\Utils\ArrayList
 {
     private ?\Nette\Utils\DateTime $solvedOn = null;
-
-
+    
     public function offsetSet($index, $value): void
     {
         if( !($value instanceof ITask) ) {
