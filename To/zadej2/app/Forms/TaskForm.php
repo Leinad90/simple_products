@@ -6,10 +6,12 @@
  * and open the template in the editor.
  */
 
-use Nette\Application\UI\Form; 
-namespace App\Forms; 
+namespace App\Forms;
 
-class TaskForm extends \Nette\Application\UI\Control
+use Nette\Application\UI\Control;
+use Nette\Application\UI\Form;
+
+class TaskForm extends Control
 {
     use \Nette\SmartObject; 
         
