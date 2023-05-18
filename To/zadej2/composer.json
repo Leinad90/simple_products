@@ -11,16 +11,15 @@
 		"nette/caching": "^3.1",
 		"nette/database": "^3.1",
 		"nette/di": "^3.0",
-		"nette/finder": "^2.5",
 		"nette/forms": "^3.1",
 		"nette/http": "^3.1",
-		"nette/mail": "^3.1",
-		"nette/robot-loader": "^3.3",
+		"nette/mail": "^4.0",
+		"nette/robot-loader": "^4.0",
 		"nette/security": "^3.1",
-		"nette/utils": "^3.2",
-		"latte/latte": "^2.9",
+		"nette/utils": "^4.0",
+		"latte/latte": "^3.0",
 		"tracy/tracy": "^2.8",
-		"chriskonnertz/string-calc": "^1.0"
+		"chriskonnertz/string-calc": "^2.0"
 	},
 	"require-dev": {
 		"nette/tester": "^2.3",
