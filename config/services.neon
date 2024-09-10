@@ -1,0 +1,12 @@
+services:
+	- App\Core\RouterFactory::createRouter
+	- App\Model\Enum\ProductDrivers::from(%product_driver%)
+	- %product_driver%
+
+
+search:
+	-	in: %appDir%
+		classes:
+			- *Factory
+			- *Facade
+#	-   in: %appDir%/Model
