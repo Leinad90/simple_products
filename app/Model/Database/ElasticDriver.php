@@ -2,11 +2,17 @@
 
 declare(strict_types=1);
 
+namespace App\Model\Database;
+
 class ElasticDriver implements IElasticSearchDriver
 {
 
-    public function findById(string $id)
+    public function findById($id): array
     {
-        // TODO: Implement findById() method.
+        return [
+          'id'=> $id,
+          'driver'=>'elasticsearch',
+          'time'=>time(),
+        ];
     }
 }

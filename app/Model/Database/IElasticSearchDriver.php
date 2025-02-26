@@ -2,11 +2,13 @@
 
 declare(strict_types=1);
 
-interface IMySQLDriver
+namespace app\Model\Database;
+interface IElasticSearchDriver
 {
     /**
      * @param string $id
      * @return array
      */
-    public function findProduct($id);
+    public function findById($id);
 }
+
