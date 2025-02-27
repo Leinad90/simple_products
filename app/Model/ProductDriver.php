@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Model;
 
-use App\Model\Database\ElasticDriver;
-use App\Model\Database\MySQLDriver;
+use App\Model\Database\IElasticSearchDriver;
+use App\Model\Database\IMySQLDriver;
 use Nette\Caching\Cache;
 use Nette\Caching\Storage;
 
@@ -13,21 +13,31 @@ class ProductDriver
 {
 
     public function __construct(
-        private readonly ?MySQLDriver $mySQLDriver = null,
-        private readonly ?ElasticDriver $elasticDriver = null,
-        private readonly Storage $storage
+        private readonly Storage $storage,
+        private readonly ?IMySQLDriver $mySQLDriver = null,
+        private readonly ?IElasticSearchDriver $elasticDriver = null,
     ) {
 
     }
     public function getById(string $id): array
     {
         $cache = new Cache($this->storage, __CLASS__);
+        $this->logIdRead($id);
         return $cache->load(
             ['product' => $id],
             function () use ($id) {
                 return $this->findById($id);
             }
         );
+    }
+
+    private function logIdRead(string $id): void
+    {
+        if($this->mySQLDriver) {
+            //$this->mySQLDriver->logIdRead($id);
+        } elseif ($this->elasticDriver) {
+            //$this->elasticDriver->logIdRead($id);
+        }
     }
 
     private function findById(string $id): array

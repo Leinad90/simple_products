@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace app\Model\Database;
+namespace App\Model\Database;
 interface IElasticSearchDriver
 {
     /**

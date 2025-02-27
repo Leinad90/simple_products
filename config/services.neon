@@ -1,6 +1,9 @@
 services:
 	- App\Core\RouterFactory::createRouter
+	ProductDriver:  App\Model\ProductDriver
 
+	ElasticDriver: App\Model\Database\ElasticDriver
+	#MySQLDriver: App\Model\Database\MySQLDriver
 
 search:
 	-	in: %appDir%
