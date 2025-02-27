@@ -17,8 +17,12 @@ class ProductDriver
         private readonly ?IMySQLDriver $mySQLDriver = null,
         private readonly ?IElasticSearchDriver $elasticDriver = null,
     ) {
-
     }
+
+    /**
+     * @return mixed[]
+     * @throws InvalidStateException
+     */
     public function getById(string $id): array
     {
         $cache = new Cache($this->storage, __CLASS__);
@@ -37,9 +41,16 @@ class ProductDriver
             //$this->mySQLDriver->logIdRead($id);
         } elseif ($this->elasticDriver) {
             //$this->elasticDriver->logIdRead($id);
+        } else {
+            trigger_error("Zvětšeno o jedna");
         }
     }
 
+
+    /**
+     * @return mixed[]
+     * @throws InvalidStateException
+     */
     private function findById(string $id): array
     {
         if($this->mySQLDriver) {

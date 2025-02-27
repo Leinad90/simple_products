@@ -2,12 +2,11 @@
 
 declare(strict_types=1);
 
-namespace app\Model\Database;
+namespace App\Model\Database;
 interface IMySQLDriver
 {
     /**
-     * @param string $id
-     * @return array
+     * @return mixed[]
      */
-    public function findProduct($id);
+    public function findProduct(string $id): array;
 }

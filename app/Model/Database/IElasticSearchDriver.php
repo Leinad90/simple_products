@@ -7,8 +7,8 @@ interface IElasticSearchDriver
 {
     /**
      * @param string $id
-     * @return array
+     * @return mixed[]
      */
-    public function findById($id);
+    public function findById(string $id): array;
 }
 

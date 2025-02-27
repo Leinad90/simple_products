@@ -22,7 +22,10 @@
 	},
 	"require-dev": {
 		"nette/tester": "^2.5",
-		"symfony/thanks": "^1"
+		"symfony/thanks": "^1",
+		"phpstan/phpstan": "^2.1",
+		"phpstan/phpstan-nette": "^2.0",
+		"phpstan/extension-installer": "^1.4"
 	},
 	"autoload": {
 		"psr-4": {
@@ -32,7 +35,8 @@
 	"minimum-stability": "stable",
 	"config": {
 		"allow-plugins": {
-			"symfony/thanks": true
+			"symfony/thanks": true,
+			"phpstan/extension-installer": true
 		}
 	}
 }

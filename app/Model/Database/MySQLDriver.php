@@ -7,7 +7,10 @@ namespace App\Model\Database;
 class MySQLDriver implements IMySQLDriver
 {
 
-    public function findProduct($id): array
+    /**
+     * @return scalar[]
+     */
+    public function findProduct(string $id): array
     {
         return [
             'id'=> $id,
