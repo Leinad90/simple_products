@@ -1,0 +1,13 @@
+
+
+# Disable directory listing for security reasons
+<IfModule mod_autoindex.c>
+	Options -Indexes
+</IfModule>
+
+# Enable pretty URLs (removing the need for "index.php" in the URL)
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+    #RewriteCond %{ENV:REDIRECT_STATUS} ^$
+    RewriteRule (.*) /www/$1
+</IfModule>

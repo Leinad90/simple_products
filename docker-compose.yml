@@ -1,0 +1,12 @@
+# Use root/root credentials
+version: '3.8'
+
+services:
+  app:
+    build: .
+    volumes:
+      - ./web-project/:/var/www/html/
+    ports:
+      - "8080:80"
+    entrypoint: ["sh", "-c",
+        "apache2-foreground"]
