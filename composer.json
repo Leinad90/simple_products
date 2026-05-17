@@ -38,5 +38,9 @@
 			"symfony/thanks": true,
 			"phpstan/extension-installer": true
 		}
+	},
+	"scripts": {
+		"phpstan": "phpstan analyse -c phpstan.neon",
+		"test": "tester tests -s"
 	}
 }

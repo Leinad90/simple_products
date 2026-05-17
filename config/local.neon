@@ -1,0 +1,3 @@
+parameters:
+    environment: 'local'
+    storageDir: '%appDir%/../storage'

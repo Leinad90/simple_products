@@ -4,6 +4,7 @@ services:
 
 	ElasticDriver: App\Model\Database\ElasticDriver
 	#MySQLDriver: App\Model\Database\MySQLDriver
+	FileSystemDriver: App\Model\Database\FileSystemDriver(%storageDir%)
 
 search:
 	-	in: %appDir%
